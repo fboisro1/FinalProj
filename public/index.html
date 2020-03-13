@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Movies</title>
+    <!-- <documentation at http://demos.jquerymobile.com/1.4.1/ > -->
+       
+        <link rel="stylesheet" href="/public/stylesheets/themes/my-custom-theme.css" />
+        <link rel="stylesheet" href="/public/stylesheets/themes/jquery.mobile.icons.min.css" />
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" /> 
+ 
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="/public/javascripts/index.js"></script>
+    <link rel="stylesheet" type="text/css" href="/public/stylesheets/style.css">
+
+</head>
+
+<body>
+  
+    <!-- Start of  page -->
+    <div data-role="page"  id="home">
+        <!--   page header -->
+        <div data-role="header" data-theme='a'>
+            <!-- helpful location   -->
+            <!-- https://demos.jquerymobile.com/1.2.0/docs/toolbars/docs-navbar.html -->
+
+            <h1>My Movies</h1>
+            <div data-role="navbar" >
+                <ul>
+                    <li><a href="#home">Home Page</a></li>
+                    <li><a href="#Load">Add Movie</a></li>
+                    <li><a href="#ListAll">List Movies</a></li>
+        
+                </ul>
+                </div><!-- /navbar -->
+            
+        </div>
+        <!--   page content -->
+        <div data-role="content" data-theme='a'>
+            <h2> My Collection of Movies</h2>
+            <img src="/public/images/OIP1.jpeg" alt="Picture"width="143" height="181" >
+            <img src="/public/images/OIP2.jpeg" alt="Picture" width="143" height="220" >
+            <img src="/public/images/OIP3.jpeg" alt="Picture" width="143" height="181" >
+        </div>
+            
+        <!--  page footer -->
+        <div data-role="footer" data-theme='a'>
+                <h1>Copyrigtht 2020 by Kurt Friedrich</h1>
+        </div>
+    </div>
+
+
+    <div data-role="page"  id="Load">
+        <!--  page header -->
+        <div data-role="header" data-theme='a'>
+            <h1>My Movies</h1>
+            <div data-role="navbar" >
+                <ul>
+                    <li><a href="#home">Home Page</a></li>
+                    <li><a href="#Load">Add Movie</a></li>
+                    <li><a href="#ListAll">List Movies</a></li>
+                </ul>
+            </div><!-- /navbar -->
+        </div>
+        <!-- page content -->
+        <div data-role="content" data-theme='b'>
+            <h2>Enter a new Movie</h2>
+            Enter movie name <br />
+            <input type="text" value="" id="title" />
+            Enter year released <br />
+            <input type="text" value="" id="year" />
+            Enter leading man <br />
+            <input type="text" value="" id="man" />
+            Enter leading woman <br />
+            <input type="text" value="" id="woman" />
+            <form>
+                <div class="ui-field-contain">
+                <label for="select-genre">Select a Genre</label>
+                <select name="select-genre" id="select-genre">
+                    <option value="Action">Action</option>
+                    <option value="Comedy">Comedy</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Horror">Horror</option>
+                    <option value="SciFi">SciFi</option>
+                    <option value="Musical">Musical</option>
+                    <option value="Western">Western</option>
+                </select>
+                </div>
+            </form>
+
+            <input type="button" value="Click To Add Movie" id="buttonAdd"  data-inline="true" />
+                <input type="button" value="Clear Data" id="buttonClear"  data-inline="true" />
+        </div>
+            
+        <!--   page footer -->
+        <div data-role="footer" data-theme='a'>
+            <h1>Copyrigtht 2020 by Kurt Friedrich</h1>
+        </div>
+    </div>
+
+
+
+
+    <div data-role="page"  id="ListAll">
+            <!--   page header -->
+        <div data-role="header" data-theme='a'>
+            <h1>My Movies</h1>
+            <div data-role="navbar" >
+                <ul>
+                    <li><a href="#home">Home Page</a></li>
+                    <li><a href="#Load">Add Movie</a></li>
+                    <li><a href="#ListAll">List Movies</a></li>
+                </ul>
+            </div><!-- /navbar -->
+        </div>
+
+            <!-- LisAll   page content -->
+        <div data-role="content" data-theme='a'>
+            <p> Here are my Movies</p>
+            <div id="divMovieList"></div>
+            <input type="button" value="Sort By Genre" id="buttonSortGenre" data-inline="true"  />
+            <input type="button" value="Sort By Title" id="buttonSortTitle" data-inline="true"   />
+            <br />
+            <br />
+            Enter movie Title to Delete <br />
+            <input type="text" value="" id="deleteTitle" data-inline="true" />
+            <input type="button" value="Delete Movie by Title from Title box" id="buttonDelete" data-inline="true"   />
+        </div>
+              
+            <!--   page footer -->
+            <div data-role="footer" data-theme='a'>
+              <h1>Copyrigtht 2020 by Kurt Friedrich</h1>
+            </div>
+        </div>
+    </div>      
+    
+    <!-- Start of  page -->
+    <div data-role="page"  id="detailPage">
+        <!--   page header -->
+        <div data-role="header" data-theme='a'> 
+            <h1>My Movies</h1>
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#home">Home Page</a></li>
+                    <li><a href="#Load">Add Movie</a></li>
+                    <li><a href="#ListAll">List Movies</a></li>
+
+                </ul>
+            </div><!-- /navbar -->
+        </div>
+        <!--  content -->
+        <div data-role="content" data-theme='d'>
+            <div>
+                <p id="IDparmHere" hidden>change1</p>  <!-- hidden    a place to stash the movie title -->
+                <p class="bold" > Here are the details</p>
+                <p> <span class="bold"> Title: </span> <span id="oneTitle" </span>  </p>
+                <p><span class="bold"> Title: </span> <span id="oneYear" </span>  </p>
+                <p><span class="bold"> Genre: </span> <span id="oneGenre" </span>  </p>
+                <p><span class="bold"> Female Star: </span> <span id="oneWoman" </span>  </p>
+                <p><span class="bold"> Male Star: </span> <span id="oneMan" </span>  </p>
+
+            </div>
+        </div>
+            
+        <!--    footer -->
+        <div data-role="footer" data-theme='a'>
+            <h1>Copyrigtht 2020 by Kurt Friedrich</h1>
+        </div>
+   
+    </div>  
+
+    <!-- Start of  page -->
+    <div data-role="page"  id="refreshPage">
+       <!--  content -->
+        <div data-role="content" >
+              <!--  this page is used to to jump to and then back to a page to force a pagebeforeload event -->
+        </div>
+    </div>  
+
+</body>

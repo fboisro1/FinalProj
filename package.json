@@ -1,0 +1,21 @@
+{
+  "name": "DiceGame",
+  "version": "0.0.0",
+  "private": true,
+  "engines": {
+    "node": "8.17.0",
+    "npm": "5.6.0"
+  },
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "~1.3.3",
+    "debug": "^4.1.1",
+    "express": "^4.17.1",
+    "jade": "~1.6.0",
+    "morgan": "^1.9.1",
+    "serve-favicon": "^2.5.0"
+  }
+}
