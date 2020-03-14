@@ -2,181 +2,224 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My Movies</title>
-    <!-- <documentation at http://demos.jquerymobile.com/1.4.1/ > -->
-       
-        <link rel="stylesheet" href="/public/stylesheets/themes/my-custom-theme.css" />
-        <link rel="stylesheet" href="/public/stylesheets/themes/jquery.mobile.icons.min.css" />
-        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" /> 
- 
+    <title>Wage Calculator</title>
+    
+    <link rel="stylesheet" href="./stylesheets/themes/floopy.css"/>
+    <link rel="stylesheet" href="./stylesheets/themes/floopy.min.css"/>
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css"/>
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-    <script src="/public/javascripts/index.js"></script>
-    <link rel="stylesheet" type="text/css" href="/public/stylesheets/style.css">
+    
+    <link rel="stylesheet" href="./stylesheets/themes/index.css">
+    <script src="./javascripts/index.js"></script>
+
+
 
 </head>
 
 <body>
-  
-    <!-- Start of  page -->
+
+    <!-- Start of Home page -->
     <div data-role="page"  id="home">
-        <!--   page header -->
-        <div data-role="header" data-theme='a'>
-            <!-- helpful location   -->
-            <!-- https://demos.jquerymobile.com/1.2.0/docs/toolbars/docs-navbar.html -->
-
-            <h1>My Movies</h1>
-            <div data-role="navbar" >
-                <ul>
-                    <li><a href="#home">Home Page</a></li>
-                    <li><a href="#Load">Add Movie</a></li>
-                    <li><a href="#ListAll">List Movies</a></li>
-        
-                </ul>
-                </div><!-- /navbar -->
-            
-        </div>
-        <!--   page content -->
-        <div data-role="content" data-theme='a'>
-            <h2> My Collection of Movies</h2>
-            <img src="/public/images/OIP1.jpeg" alt="Picture"width="143" height="181" >
-            <img src="/public/images/OIP2.jpeg" alt="Picture" width="143" height="220" >
-            <img src="/public/images/OIP3.jpeg" alt="Picture" width="143" height="181" >
-        </div>
-            
-        <!--  page footer -->
-        <div data-role="footer" data-theme='a'>
-                <h1>Copyrigtht 2020 by Kurt Friedrich</h1>
-        </div>
-    </div>
-
-
-    <div data-role="page"  id="Load">
-        <!--  page header -->
-        <div data-role="header" data-theme='a'>
-            <h1>My Movies</h1>
-            <div data-role="navbar" >
-                <ul>
-                    <li><a href="#home">Home Page</a></li>
-                    <li><a href="#Load">Add Movie</a></li>
-                    <li><a href="#ListAll">List Movies</a></li>
-                </ul>
-            </div><!-- /navbar -->
-        </div>
-        <!-- page content -->
-        <div data-role="content" data-theme='b'>
-            <h2>Enter a new Movie</h2>
-            Enter movie name <br />
-            <input type="text" value="" id="title" />
-            Enter year released <br />
-            <input type="text" value="" id="year" />
-            Enter leading man <br />
-            <input type="text" value="" id="man" />
-            Enter leading woman <br />
-            <input type="text" value="" id="woman" />
-            <form>
-                <div class="ui-field-contain">
-                <label for="select-genre">Select a Genre</label>
-                <select name="select-genre" id="select-genre">
-                    <option value="Action">Action</option>
-                    <option value="Comedy">Comedy</option>
-                    <option value="Drama">Drama</option>
-                    <option value="Horror">Horror</option>
-                    <option value="SciFi">SciFi</option>
-                    <option value="Musical">Musical</option>
-                    <option value="Western">Western</option>
-                </select>
+            <!--  Home page header -->
+            <div data-role="header" data-theme='a' data-inline="true">
+                <h1>Weloome to Sefu's Wage Calculator!</h1>
+                <h2>Would you like to find how much your next check is?</h2>
+                <div data-role="navbar" data-theme='a'>
+                    <ul>
+                       <li> <a href="#inputPage" data-role="button">Input Page</a> </li>
+                    </ul>
                 </div>
-            </form>
-
-            <input type="button" value="Click To Add Movie" id="buttonAdd"  data-inline="true" />
-                <input type="button" value="Clear Data" id="buttonClear"  data-inline="true" />
+            </div>
+            <!--  Home page content -->
+            <div data-role="content" data-theme='a'>
+                <img src="../images/newGif.gif" alt="gif">
+                
+            </div>
+              
+            <!--  Home page footer -->
+            <div data-role="footer" data-theme='a'>
+                    <h1>Copyright 2020 by Sefu Boisrond</h1>
+            </div>
         </div>
+
+
+        <div data-role="page"  id="inputPage" >
+            <!--  inputPage page header -->
+            <div data-role="header" data-theme='a'data-inline="true">
+                <div data-role="navbar" data-theme='a'>
+                    <ul>
+                       <li> <a href="#home" data-role="button">Home</a> </li>
+                       <li> <a href="#resultsPage" data-role="button">Results</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!--  inputPage page content -->
+            <div data-role="content" data-theme='a'>
+                <img src="../images/leaf.gif" alt="leafy gif">
+
+                <form name="formcalc">
+                <p> Enter the following information to calculate your annual salary.</p>
+                
+                <br>
+                <label for="name">Please Enter your Full Name</label>
+                <input type="text" id="name">
+                <br/>
+                <label for="hours">Enter the hours you have worked</label>
+                <input name = "hours" type="text" id="hours" value="0.0" />
+                 
+                <br />
+                <label for="wages">Enter your pay rate</label>
+                <input name= "wages" type="text" id="wages" value="0.00" />
+                <br/>
+                <!--
+                    <form>
+                        <div class = "ui-field-contain">
+                            <label for="select-job">Select Job</label> 
+                            <select name="select-job" id="select-job">
+                                <option value="Medical">Medical</option>
+                                <option value="Legal">Legal</option>
+                                <option value="Service">Service</option>
+                                <option value="Textile">Textile</option>
+                            </select>
+                        </div>
+                    </form>
+-->
+                <input type="button" value="Click To Calculate" id="calculate"/>
+                </form>
+            </div>
+              
+            <!--  inputPage footer -->
+            <div data-role="footer" data-theme='a'>
+                <h1>Copyright 2020 by Sefu Boisrond</h1>
+            </div>
+        </div>
+
+    <!-- Page 2 -->
+    <div data-role="page"  id="resultsPage">
+            <!--  Page 2 page header -->
+            <div data-role="header" data-theme='a' data-inline="true">
+                <h1>The Amazing course Proj! Page 2</h1><div data-role="navbar" data-theme='a'>
+                    <ul>
+                       <li> <a href="#home" data-role="button">Home</a></li>
+                       <li> <a href="#inputPage" data-role="button">Input Page</a> </li>
+                       <li> <a href="#listPage" data-role="button">List Page</a></li>
+                       
+                    </ul>
+                </div>
+            </div>
             
-        <!--   page footer -->
-        <div data-role="footer" data-theme='a'>
-            <h1>Copyrigtht 2020 by Kurt Friedrich</h1>
+            <!--  Page 2 content -->
+            <div data-role="content" data-theme='a'>
+
+              
+             <label>These are your results!</label>
+
+           <!--    
+           <label id="results">Results</label>
+           <label id="username">Name</label>
+             
+             --> 
+             <div data-role="content" data-theme='a'>
+                 <div>
+                    <img src="../images/giphy.gif" alt="gif" >
+                </div>
+            </div>
+            <br>
+        
+            <p>These are your: </p>   <p id="results">Results</p>
+            <p id="username">Name</p>
+            
+            
+          
+
+             <input type="button" value="Click to save info" id="buttonSave" data-inline="true"/>
+            
+            </div>
+              
+            <!--  Page 2 footer -->
+            <div data-role="footer" data-theme='a'>
+                <h1>Copyright 2020 by Sefu Boisrond</h1>
+            </div>
         </div>
     </div>
 
-
-
-
-    <div data-role="page"  id="ListAll">
-            <!--   page header -->
-        <div data-role="header" data-theme='a'>
-            <h1>My Movies</h1>
-            <div data-role="navbar" >
-                <ul>
-                    <li><a href="#home">Home Page</a></li>
-                    <li><a href="#Load">Add Movie</a></li>
-                    <li><a href="#ListAll">List Movies</a></li>
-                </ul>
-            </div><!-- /navbar -->
-        </div>
-
-            <!-- LisAll   page content -->
-        <div data-role="content" data-theme='a'>
-            <p> Here are my Movies</p>
-            <div id="divMovieList"></div>
-            <input type="button" value="Sort By Genre" id="buttonSortGenre" data-inline="true"  />
-            <input type="button" value="Sort By Title" id="buttonSortTitle" data-inline="true"   />
-            <br />
-            <br />
-            Enter movie Title to Delete <br />
-            <input type="text" value="" id="deleteTitle" data-inline="true" />
-            <input type="button" value="Delete Movie by Title from Title box" id="buttonDelete" data-inline="true"   />
-        </div>
-              
-            <!--   page footer -->
-            <div data-role="footer" data-theme='a'>
-              <h1>Copyrigtht 2020 by Kurt Friedrich</h1>
-            </div>
-        </div>
-    </div>      
-    
-    <!-- Start of  page -->
-    <div data-role="page"  id="detailPage">
-        <!--   page header -->
-        <div data-role="header" data-theme='a'> 
-            <h1>My Movies</h1>
-            <div data-role="navbar">
-                <ul>
-                    <li><a href="#home">Home Page</a></li>
-                    <li><a href="#Load">Add Movie</a></li>
-                    <li><a href="#ListAll">List Movies</a></li>
-
-                </ul>
-            </div><!-- /navbar -->
-        </div>
-        <!--  content -->
-        <div data-role="content" data-theme='d'>
-            <div>
-                <p id="IDparmHere" hidden>change1</p>  <!-- hidden    a place to stash the movie title -->
-                <p class="bold" > Here are the details</p>
-                <p> <span class="bold"> Title: </span> <span id="oneTitle" </span>  </p>
-                <p><span class="bold"> Title: </span> <span id="oneYear" </span>  </p>
-                <p><span class="bold"> Genre: </span> <span id="oneGenre" </span>  </p>
-                <p><span class="bold"> Female Star: </span> <span id="oneWoman" </span>  </p>
-                <p><span class="bold"> Male Star: </span> <span id="oneMan" </span>  </p>
+    <!-- Page 3 -->
+    <div data-role="page"  id="listPage">
+            <!-- Page 3 header -->
+            <div data-role="header" data-theme='a'>
+                <h1>The Amazing course Proj!</h1>
+                <div data-role="navbar" data-theme='a'>
+                    <ul>
+                       <li> <a href="#home" data-role="button">Home</a></li>
+                       <li> <a href="#inputPage" data-role="button">Input Page</a> </li>
+                       <li> <a href="#resultsPage" data-role="button">Results Page</a></li>
+                       <li> <a href="#lastPage" data-role="button">Last Page</a></li>
+                    </ul>
+                </div>
 
             </div>
-        </div>
             
-        <!--    footer -->
-        <div data-role="footer" data-theme='a'>
-            <h1>Copyrigtht 2020 by Kurt Friedrich</h1>
-        </div>
-   
-    </div>  
+            <!--  Page 3 content -->
+            <div data-role="content" data-theme='a'>
+                <h1> Congratulations! Here are your results Page 3!</h1>
+                
+                <div id="divUserList"></div>
 
-    <!-- Start of  page -->
-    <div data-role="page"  id="refreshPage">
-       <!--  content -->
-        <div data-role="content" >
-              <!--  this page is used to to jump to and then back to a page to force a pagebeforeload event -->
+                <div data-role="content" data-theme='a'>
+                    <div>
+                       <img src="../images/giphy.gif" alt="gif" >
+                       <p id="IDparmHere" hidden>Oops!</p>
+                       <p id="oneName"></p>
+                       <p id ="oneWage"></p>
+                       <p id="oneHours"></p>
+                   </div>
+               </div>
+                <!--
+                <input type="button" value="Sort by hours" id="sortByHours" data-inline="true"/>
+                <input type="button" value="Sort by wages" id="sortByWages" data-inline="true"/>
+                -->
+            </div>
+            
+            <div>
+                <button id="addNewUser">Add new info here</button>
+            </div>
+
+            <!--  Page 3 footer -->
+            <div data-role="footer" data-theme='a'>
+                <h1>Copyright 2020 by Sefu Boisrond</h1>
+            </div>
         </div>
-    </div>  
+    </div>
+
+     <!-- Start page 4 -->
+     <div data-role="page"  id="lastPage">
+            <!--  page 4 page header -->
+            <div data-role="header" data-theme='a'>
+                <h1>Thank you for using my app</h1>
+                <div data-role="navbar"  data-theme='a'>
+                    <ul>
+                        <li><a href="#home">Home Page</a></li>
+                        <li><a href="#inputPage">Input Page</a></li>
+                        <li><a href="#resultsPage">Results</a></li>
+                        <li><a href="#listPage">List Page</a></li>
+  
+                    </ul>
+                  </div><!-- /navbar -->
+
+            </div>
+        
+             <!--  page 4 page footer -->
+             <div data-role="footer" data-theme='a'>
+                <h1>Copyright 2020 by Sefu Boisrond</h1>
+            </div>
+                    
+            </div>
+              
+           
+        </div>
+    </div>
+        
 
 </body>
+</html>

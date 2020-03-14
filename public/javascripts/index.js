@@ -1,181 +1,181 @@
-// this code runs once, immediately when the js file is pulled down
-let movieArray = [];
+let payRate = 0.00;
+let hours = 0.0;
+let r;
+let n = "";
+let userArray = [];
 
-let selectedGenre = "not selected";  // for my dropdown list of movie genre
 
-// define a constructor to create movie objects
-var MovieObject = function (pTitle, pYear, pGenre, pMan, pWoman) {
-  this.Title = pTitle;
-  this.Year = pYear;
-  this.Genre = pGenre;  // action  comedy  drama  horrow scifi  musical  western
-  this.Man = pMan;
-  this.Woman = pWoman;
+var UserObj = function (pUserWage, pUserHours, pName) {
+    this.UserWage = pUserWage;
+    this.UserHours = pUserHours;
+    this.Name = pName;
+    this.ID = userArray.length + 1;
+    
 }
 
-// end of run once code
+userArray.push(new UserObj(25, 84, "Sefu Kaba"));
+userArray.push(new UserObj(27, 86, "Roofus"));
+userArray.push(new UserObj(28, 85, "Roody"));
 
-// code in this block waits untill everything had come down from server, then it runs
-document.addEventListener("DOMContentLoaded", function () {
+    
+    document.addEventListener("DOMContentLoaded", function(){
 
-  document.getElementById("buttonAdd").addEventListener("click", function () {
-    let newMovie = new MovieObject(document.getElementById("title").value, document.getElementById("year").value,
-       selectedGenre, document.getElementById("man").value, document.getElementById("woman").value);
-       addNewMoive(newMovie); // now post new movie object to node server
+        document.getElementById("buttonSave").addEventListener("click", function () {
+            userArray.push(new UserObj(document.getElementById("wages").value, 
+            document.getElementById("hours").value, 
+            document.getElementById("name").value));
+            
+        });
+
+        $(document).bind("change", "#select-job", function (event, ui) {
+            selectedJob = $('#select-job').val();
+          });
+
+        // document.getElementById("sortByWage").addEventListener("click", function(){
+        //     userArray = userArray.sort(compareWage);
+        //     createList();
+        //   });
+
+        // document.getElementById("sortByHours").addEventListener("click", function(){
+        //     userArray = userArray.sort(compareHours);    
+        //     createList();
+        //   });
+
+        document.getElementById("calculate").addEventListener("click", function(){
+            calcValues();
+            // userArray.push(new UserObj(document.getElementById("wages").value, 
+            // document.getElementById("hours").value, 
+            // document.getElementById("name").value)
+            //document.location.href = "index.html#listPage";
+        });
+
+        document.getElementById("addNewUser").addEventListener( "click", function(){
+            let newUser = new UserObj(document.getElementById("name").value,
+            document.getElementById("hours").value,
+            document.getElementById("wages").value);
+            addNewUSer(newUser);
+            location.href = "#inputPage";
+        });
+               
+        //need this for when I go back to list page
+        $(document).on("pagebeforeshow", "#listPage", function (event) {   // have to use jQuery 
+        document.getElementById("results").value;
+        document.getElementById("username").value;
+        createList();
+        
+        });
+          
+
+        $(document).on("pagebeforeshow", "resultsPage", function (event) {   // have to use jQuery 
+        let localID =  document.getElementById("IDparmHere").innerHTML;
+        document.getElementById("oneName").innerHTML = "Your name is: " + userArray[userArray.length - 1].Name;
+        document.getElementById("oneWage").innerHTML = "Your wages are: " + userArray[userArray.length - 1].UserWage;
+        document.getElementById("oneHours").innerHTML = "You have worked " + userArray[userArray.length - 1].UserHours;
+        });
+
     });
+          
+// var bla = $('#txt_name').val();
 
 
-    // this deals with the event when the drop down changes
-  $(document).bind("change", "#select-genre", function (event, ui) {
-    selectedGenre = $('#select-genre').val();
-  });
+function compareWage(a, b) {
+    
+    const wageA = a.UserWage;
+    const wageB = b.UserWage;
+  
+    let comparison = 0;
+    if (wageA > wageB) {
+      comparison = 1;
+    } else if (wageA < wageB) {
+      comparison = -1;
+    }
+    return comparison;
+  }
 
-  // 2 sort button events. after running these, the local array is not in the same
-  // order as the server array, but have no dependence on the order of items in the 2 arrays
-  document.getElementById("buttonSortTitle").addEventListener("click", function () {
-    movieArray = movieArray.sort(compareTitle);
-    createList();
-  });
+  function compareHours(a, b) {
+    // Use toUpperCase() to ignore character casing
+    const hoursA = a.UserHours;
+    const hoursB = b.UserHours;
+  
+    let comparison = 0;
+    if (hoursA > hoursB) {
+      comparison = 1;
+    } else if (hoursA < hoursB) {
+      comparison = -1;
+    }
+    return comparison;
+  }
 
-  document.getElementById("buttonSortGenre").addEventListener("click", function () {
-    movieArray = movieArray.sort(compareGenre);
-    createList();
-  });
+  
+
+function calcValues() {
+    var num1 = $('#hours').val(); // gets input
+    var num2 = $('#wages').val();
+    n = $('#name').val();
+
+    payRate = num1; //sets the global variable payRate to user input 
+    hours = num2;
+     
 
 
-  // delete button  Had trouble with spaces in titles, its an easy thing to fix
-  // I just didn't get the time
-  document.getElementById("buttonDelete").addEventListener("click", function () {
-    let deleteTitle = document.getElementById("deleteTitle").value;
-    // doing the call to the server right here
-    fetch('users/deleteMovie/' + deleteTitle , {
-    // users/deleteMovie/Moonstruck   for example, this is what the URL looks like sent over the network
-        method: 'DELETE'
-    })  
-    // now wait for 1st promise, saying server was happy with request or not
-    .then(responsePromise1 => responsePromise1.text()) // ask for 2nd promise when server is node
-    .then(responsePromise2 =>  console.log(responsePromise2), document.location.href = "index.html#refreshPage")  // wait for data from server to be valid
-    // force jump off of same page to refresh the data after delete
-    .catch(function (err) {
-        console.log(err);
-        alert(err);
-       });
+    num1 = Number(document.formcalc.hours.value);
+    num2 = Number(document.formcalc.wages.value);
+    var results = num1 * num2;
+    r = results;
+    document.getElementById("results").innerHTML = results;
+    document.getElementById("username").innerHTML = n;
+   
 
    
-  });
+};
 
-$(document).on("pagebeforeshow", "#ListAll", function (event) {   // have to use jQuery 
-    FillArrayFromServer();  // need to get fresh data
-    // createList(); this can't be here, as it is not waiting for data from server
-});
+//Mesh Save and Calc button
 
-// leaving ListAll to force the pagebeforeshow on ListAll from within that page when delete
-$(document).on("pagebeforeshow", "#refreshPage", function (event) {   
-    document.location.href = "index.html#ListAll";
-});
-  
-  document.getElementById("buttonClear").addEventListener("click", function () {
-    document.getElementById("title").value = "";
-    document.getElementById("year").value = "";
-    document.getElementById("man").value = "";
-    document.getElementById("woman").value = "";
-  });
-  
-$(document).on("pagebeforeshow", "#Load", function (event) {   // have to use jQuery 
-  document.getElementById("title").value = "";
-  document.getElementById("year").value = "";
-  document.getElementById("man").value = "";
-  document.getElementById("woman").value = "";
-  });
 
-$(document).on("pagebeforeshow", "#detailPage", function (event) {   // have to use jQuery 
-    let localTitle = document.getElementById("IDparmHere").innerHTML;
-    for(let i=0; i < movieArray.length; i++) {   
-        if(movieArray[i].Title = localTitle){
-            document.getElementById("oneTitle").innerHTML =  movieArray[i].Title;
-            document.getElementById("oneYear").innerHTML =  movieArray[i].Year;
-            document.getElementById("oneGenre").innerHTML =  movieArray[i].Genre;
-            document.getElementById("oneWoman").innerHTML =   movieArray[i].Woman;
-            document.getElementById("oneMan").innerHTML =   movieArray[i].Man;
-        }  
-    }
- });
-
-});
 
 function createList()
 {
   // clear prior data
-  var divUserlist = document.getElementById("divMovieList");
-  while (divMovieList.firstChild) {    // remove any old data so don't get duplicates
-  divMovieList.removeChild(divMovieList.firstChild);
+  var divUserList = document.getElementById("divUserList");
+  while (divUserList.firstChild) {    // remove any old data so don't get duplicates
+  divUserList.removeChild(divUserList.firstChild);
   };
 
   var ul = document.createElement('ul');  
-  movieArray.forEach(function (element,) {   // use handy array forEach method
+  console.log(userArray);
+  userArray.forEach(function (element) {   // use handy array forEach method
     var li = document.createElement('li');
-    li.innerHTML = "<a data-transition='pop' class='oneMovie' data-parm=" + element.Title + "  href='#home'>Get Details </a> "  + element.Title + "  " + element.Genre;
-    // ok, this is weird.  If I set the href in the <a  anchor to detailPage, it messes up the success of
-    // the button event that I add in the loop below.  By setting it to home, it jumps to home for a second
-    // but then the button event sends it correctly to the detail page and the value of data-parm is valid.
+    li.innerHTML = "<a data-transition='pop' class='oneList' data-parm=" + element.ID + "  href='#listPage'> Get Details </a> " + element.ID + ":  " + "UserName: "+ element.Name + "    " + "Hours: " + element.UserHours + " " + "Wages: " + element.UserWage;
     ul.appendChild(li);
   });
-  divMovieList.appendChild(ul)
+  divUserList.appendChild(ul)
 
     //set up an event for each new li item, if user clicks any, it writes >>that<< items data-parm into the hidden html 
-    var classname = document.getElementsByClassName("oneMovie");
+    var classname = document.getElementsByClassName("oneList");
     Array.from(classname).forEach(function (element) {
         element.addEventListener('click', function(){
             var parm = this.getAttribute("data-parm");  // passing in the record.Id
+            //do something here with parameter on  pickbet page
             document.getElementById("IDparmHere").innerHTML = parm;
-            document.location.href = "index.html#detailPage";
+            document.location.href = "index.html#listPage";
         });
     });
    
 };
 
 
-function compareTitle(a, b) {
-    // Use toUpperCase() to ignore character casing
-    const movieA = a.Title.toUpperCase();
-    const movieB = b.Title.toUpperCase();
-  
-    let comparison = 0;
-    if (movieA > movieB) {
-      comparison = 1;
-    } else if (movieA < movieB) {
-      comparison = -1;
-    }
-    return comparison;
-  }
-  
-
-function compareGenre(a, b) {
-    // Use toUpperCase() to ignore character casing
-    const movieA = a.Genre.toUpperCase();
-    const movieB = b.Genre.toUpperCase();
-  
-    let comparison = 0;
-    if (movieA > movieB) {
-      comparison = 1;
-    } else if (movieA < movieB) {
-      comparison = -1;
-    }
-    return comparison;
-  }
-
-
 // code to exchange data with node server
 
 function FillArrayFromServer(){
     // using fetch call to communicate with node server to get all data
-    fetch('/users/movieList')
+    fetch('/users//userList') 
     .then(function (theResonsePromise) {  // wait for reply.  Note this one uses a normal function, not an => function
         return theResonsePromise.json();
     })
     .then(function (serverData) { // now wait for the 2nd promise, which is when data has finished being returned to client
     console.log(serverData);
-    movieArray.length = 0;  // clear array
-    movieArray = serverData;   // use our server json data which matches our objects in the array perfectly
+    userArray.length = 0;  // clear array
+    userArray = serverData;   // use our server json data which matches our objects in the array perfectly
     createList();  // placing this here will make it wait for data from server to be complete before re-doing the list
     })
     .catch(function (err) {
@@ -183,16 +183,14 @@ function FillArrayFromServer(){
     });
 };
 
-
-// using fetch to push an object up to server
-function addNewMoive(newMovie){
+function addNewUSer(newUser){
    
-    // the required post body data is our movie object passed in, newMovie
+    // the required post body data is our user object passed in, newUser
     
     // create request object
-    const request = new Request('/users/addMovie', {
+    const request = new Request('/users/addNewUser', {
         method: 'POST',
-        body: JSON.stringify(newMovie),
+        body: JSON.stringify(newUser),
         headers: new Headers({
             'Content-Type': 'application/json'
         })
@@ -204,7 +202,7 @@ function addNewMoive(newMovie){
         // Note this one uses an => function, not a normal function, just to show you can do either 
         .then(theResonsePromise => theResonsePromise.json())    // the .json sets up 2nd promise
         // wait for the .json promise, which is when the data is back
-        .then(theResonsePromiseJson => console.log(theResonsePromiseJson), document.location.href = "#ListAll" )
+        .then(theResonsePromiseJson => console.log(theResonsePromiseJson), document.location.href = "#inputPage" )
         // that client console log will write out the message I added to the Repsonse on the server
         .catch(function (err) {
             console.log(err);
@@ -212,3 +210,4 @@ function addNewMoive(newMovie){
     
 }; // end of addNewUser
     
+
